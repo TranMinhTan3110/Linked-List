@@ -138,6 +138,22 @@ void moveFrontToLast(List &L){
     L.tail = p;
     p->next =NULL;
 }
+//
+void addAfter(List &L, Node *p,int x){
+	Node *k =getNode(x);
+	if(p==NULL){
+		cout<<"Khong có gia tri nay trong mang"<<endl;
+		return;
+	}
+	if(p->next == NULL){
+		p->next = k;
+		L.tail = k;
+	}
+	else{
+		k->next = p->next;
+		p->next = k;
+	}
+}
 int main(){
 	List L;
 	init(L);
@@ -163,7 +179,9 @@ int main(){
 		cout<<"\033[1;32m+--------------------------------------+\033[0m"<<endl;
 		cout<<"\033[1;32m|8.Chuyen so cuoi danh sach len dau    |\033[0m"<<endl;
 		cout<<"\033[1;32m+--------------------------------------+\033[0m"<<endl;
-		cout<<"\033[1;32m|9.Thoat!                              |\033[0m"<<endl;
+		cout<<"\033[1;32m|9.Them mot so vao sau mot so          |\033[0m"<<endl;
+		cout<<"\033[1;32m+--------------------------------------+\033[0m"<<endl;
+		cout<<"\033[1;32m|10.Thoat!                              |\033[0m"<<endl;
 		cout<<"\033[1;32m+--------------------------------------+\033[0m"<<endl;
 		cout<<"\033[1;32mMoi nhap lua chon cua ban:"<<endl;
 		cin>>n;
@@ -201,7 +219,15 @@ int main(){
 			 case 8:
 			    moveLastToFront(L);
 		        break;
-		      case 9:
+		    case 9:
+		    	int x,y;
+		    	cout<<"Nhap gia tri muon them so vao sau:";
+		    	cin>>x;
+		    	cout<<"Nhap so muon them vao sau:";
+		    	cin>>y;
+		    	addAfter(L,Search(L,x),y);
+		    	break;
+		      case 10:
                 cout << "Thoat chuong trinh." << endl;
                 return 0;  // Thoát kh?i chuong trình
             default:
